@@ -9,8 +9,17 @@ router.get("/", (req, res) => {
 	const { url, ...rest } = req.query;
 	if (url) {
 		httpRequest(url, rest).then(({ data, req_options, headers }) => {
+			let cors_headers = {
+				"Access-Control-Allow-Headers":
+					"Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin",
+				"Access-Control-Allow-Origin": "*",
+				Vary: "Origin",
+			};
 			Object.entries(headers).forEach(([key, value]) => {
 				if (key.match(/encoding/gi)) return;
+				res.setHeader(key, value);
+			});
+			Object.entries(cors_headers).forEach(([key, value]) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
