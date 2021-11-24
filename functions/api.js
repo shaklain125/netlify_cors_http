@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
 	const { url, ...rest } = req.query;
-	return res.send({});
 	if (url) {
 		httpRequest(url, rest).then(({ data, req_options, headers }) => {
 			Object.entries(headers).forEach(([key, value]) => {
