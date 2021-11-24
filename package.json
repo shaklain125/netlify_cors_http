@@ -4,8 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "netlify-lambda serve functions -s",
-		"build": "netlify-lambda build functions"
+		"start": "netlify-lambda serve functions -s"
 	},
 	"keywords": [],
 	"author": "shaklain <48572696+shaklain125@users.noreply.github.com>",
