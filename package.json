@@ -1,0 +1,18 @@
+{
+	"name": "netlify_cors_http",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "netlify-lambda serve functions -s",
+		"build": "netlify-lambda build functions -s"
+	},
+	"keywords": [],
+	"author": "shaklain <48572696+shaklain125@users.noreply.github.com>",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"netlify-lambda": "^2.0.15",
+		"serverless-http": "^2.7.0"
+	}
+}
