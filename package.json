@@ -10,8 +10,6 @@
 	"author": "shaklain <48572696+shaklain125@users.noreply.github.com>",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.24.0",
-		"cheerio": "^1.0.0-rc.10",
 		"express": "^4.17.1",
 		"netlify-lambda": "^2.0.15",
 		"serverless-http": "^2.7.0"
