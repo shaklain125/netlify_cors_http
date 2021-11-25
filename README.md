@@ -10,21 +10,19 @@ Try it out in the browser's devtools console
 ```javascript
 const cors_req_url = ({ url, method, data, headers }) =>
   `${`https://cors-http.netlify.app/.netlify/functions/api`}${((o) => {
-    const n = Object.keys(o)
-      .map((n) =>
-        Boolean(o[n])
-          ? `${encodeURIComponent(n.toString())}=${encodeURIComponent(o[n].toString())}`
-          : null
-      )
-      .filter(Boolean)
+    const p = Object.entries(o)
+      .filter(([_, v]) => Boolean(v))
+      .map((kv) => kv.map((v) => encodeURIComponent(v.toString())))
+      .map(([k, v]) => `${k}=${v}`)
       .join('&');
-    return Boolean(n) ? `?${n}` : '';
+    return Boolean(p) ? `?${p}` : '';
   })({
     method,
     data,
     headers: headers ? JSON.stringify(headers) : undefined,
     url,
   })}`;
+
 
 fetch(cors_req_url({ url: 'https://example.com/' }))
   .then((response) => response.text())
