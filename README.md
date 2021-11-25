@@ -23,7 +23,6 @@ const cors_req_url = ({ url, method, data, headers }) =>
     url,
   })}`;
 
-
 fetch(cors_req_url({ url: 'https://example.com/' }))
   .then((response) => response.text())
   .then(console.log);
