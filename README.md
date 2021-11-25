@@ -38,6 +38,6 @@ fetch(cors_req_url({ url: 'https://example.com/' }))
 Param | Value | Description
 --- | --- | ---
 *url* | `string` | The target request url
-*method* | e.g. `GET POST HEAD` | A HTTP method type
+*method* | e.g. `GET POST HEAD` | A HTTP method type. The default method type is **GET**
 *data* | `string, json stringified` |  The HTTP Post body 
 *headers* |  `json stringified` | The headers to send to the target url
