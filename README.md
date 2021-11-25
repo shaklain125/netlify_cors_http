@@ -13,7 +13,7 @@ const cors_req_url = ({ url, method, data, headers }) =>
     const p = Object.entries(o)
       .filter(([_, v]) => Boolean(v))
       .map((kv) => kv.map((v) => encodeURIComponent(v.toString())))
-      .map(([k, v]) => `${k}=${v}`)
+      .map((kv) => kv.join('='))
       .join('&');
     return Boolean(p) ? `?${p}` : '';
   })({
