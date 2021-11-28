@@ -31,16 +31,17 @@ router.get("/", (req, res) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
-			const ctype = getContentType(headers);
-			const is_img_ctype = isImageContentType(ctype);
-			const is_html_ctype = isHtmlContentType(ctype);
-			if (is_img_ctype) {
-				res.send(data.toString("base64"));
-			} else if (is_html_ctype) {
-				res.send({ url });
-			} else {
-				res.send(data);
-			}
+			res.send({ url });
+			// const ctype = getContentType(headers);
+			// const is_img_ctype = isImageContentType(ctype);
+			// const is_html_ctype = isHtmlContentType(ctype);
+			// if (is_img_ctype) {
+			// 	res.send(data.toString("base64"));
+			// } else if (is_html_ctype) {
+			// 	res.send({ url });
+			// } else {
+			// 	res.send(data);
+			// }
 		});
 		return;
 	}
