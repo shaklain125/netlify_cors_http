@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
-			res.send({ url });
+			res.send({ url, data: data.toString() });
 			// const ctype = getContentType(headers);
 			// const is_img_ctype = isImageContentType(ctype);
 			// const is_html_ctype = isHtmlContentType(ctype);
