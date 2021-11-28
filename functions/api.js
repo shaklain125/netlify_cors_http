@@ -17,6 +17,8 @@ router.get("/", (req, res) => {
 			...rest,
 			responseType: "arraybuffer",
 		}).then(({ data, req_options, headers }) => {
+			res.send({ url });
+			return;
 			let cors_headers = {
 				"Access-Control-Allow-Headers":
 					"Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin",
