@@ -36,6 +36,7 @@ router.get("/", (req, res) => {
 			const is_img_ctype = isImageContentType(ctype);
 			const is_unknown = is_unknown_file(data);
 			data = data || "";
+			res.setHeader("cache-control", "max-age=0,no-cache,no-store,must-revalidate");
 			if (is_img_ctype) {
 				res.setHeader("Content-Length", data.length);
 				res.end(data.toString("base64"));
