@@ -17,8 +17,6 @@ router.get("/", (req, res) => {
 			...rest,
 			responseType: "arraybuffer",
 		}).then(({ data, req_options, headers }) => {
-			res.send({ url });
-			return;
 			let cors_headers = {
 				"Access-Control-Allow-Headers":
 					"Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin",
@@ -36,6 +34,8 @@ router.get("/", (req, res) => {
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
 			const is_html_ctype = isHtmlContentType(ctype);
+			res.send({ url });
+			return;
 			if (is_img_ctype) {
 				res.send(data.toString("base64"));
 			} else if (is_html_ctype) {
