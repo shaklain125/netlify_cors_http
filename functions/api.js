@@ -48,6 +48,11 @@ router.get("/", (req, res) => {
 	res.send("");
 });
 
+router.get("text", (req, res) => {
+	const { url, ...rest } = req.query;
+	res.send({ url, ...rest });
+});
+
 app.use(`/.netlify/functions/api`, router);
 
 const handler = serverless(app);
