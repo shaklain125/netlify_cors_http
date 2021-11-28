@@ -23,10 +23,10 @@ router.get("/", (req, res) => {
 				"Access-Control-Allow-Origin": "*",
 				Vary: "Origin",
 			};
-			// Object.entries(headers).forEach(([key, value]) => {
-			// 	if (key.match(/encoding/gi)) return;
-			// 	res.setHeader(key, value);
-			// });
+			Object.entries(headers).forEach(([key, value]) => {
+				if (key.match(/encoding/gi)) return;
+				res.setHeader(key, value);
+			});
 			Object.entries(cors_headers).forEach(([key, value]) => {
 				res.setHeader(key, value);
 			});
