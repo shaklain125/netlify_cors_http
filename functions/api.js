@@ -4,7 +4,7 @@ const {
 	httpRequest,
 	getContentType,
 	isImageContentType,
-	isHtmlContentType,
+	is_unknown_file,
 } = require("../lib/utils");
 
 const app = express();
@@ -33,13 +33,13 @@ router.get("/", (req, res) => {
 			res.setHeader("req_params", JSON.stringify(req_options));
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
-			const is_html_ctype = isHtmlContentType(ctype);
+			const is_unknown = is_unknown_file(data);
 			if (is_img_ctype) {
 				res.send(data.toString("base64"));
-			} else if (is_html_ctype) {
+			} else if (is_unknown) {
 				res.send(data);
 			} else {
-				res.send(data);
+				res.send(data.toString());
 			}
 		});
 		return;
