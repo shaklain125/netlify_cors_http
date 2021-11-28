@@ -1,11 +1,6 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const {
-	httpRequest,
-	getContentType,
-	isImageContentType,
-	isHtmlContentType,
-} = require("../lib/utils");
+const { httpRequest, getContentType, isImageContentType } = require("../lib/utils");
 
 const app = express();
 const router = express.Router();
@@ -33,13 +28,8 @@ router.get("/", (req, res) => {
 			res.setHeader("req_params", JSON.stringify(req_options));
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
-			const is_html_ctype = isHtmlContentType(ctype);
-			res.send({ url });
-			return;
 			if (is_img_ctype) {
 				res.send(data.toString("base64"));
-			} else if (is_html_ctype) {
-				res.send(data.toString("utf-8"));
 			} else {
 				res.send(data);
 			}
