@@ -23,13 +23,13 @@ router.get("/", (req, res) => {
 				"Access-Control-Allow-Origin": "*",
 				Vary: "Origin",
 			};
-			Object.entries(headers).forEach(([key, value]) => {
-				if (key.match(/encoding/gi)) return;
-				res.setHeader(key, value);
-			});
-			Object.entries(cors_headers).forEach(([key, value]) => {
-				res.setHeader(key, value);
-			});
+			// Object.entries(headers).forEach(([key, value]) => {
+			// 	if (key.match(/encoding/gi)) return;
+			// 	res.setHeader(key, value);
+			// });
+			// Object.entries(cors_headers).forEach(([key, value]) => {
+			// 	res.setHeader(key, value);
+			// });
 			res.setHeader("req_params", JSON.stringify(req_options));
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
@@ -41,7 +41,7 @@ router.get("/", (req, res) => {
 			// } else {
 			// 	res.send(data);
 			// }
-			res.send({ url, is_html_ctype, is_img_ctype, data_html: data.toString() });
+			res.send(data.toString());
 		});
 		return;
 	}
