@@ -1,6 +1,11 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const { httpRequest, getContentType, isImageContentType } = require("../lib/utils");
+const {
+	httpRequest,
+	getContentType,
+	isImageContentType,
+	isHtmlContentType,
+} = require("../lib/utils");
 
 const app = express();
 const router = express.Router();
