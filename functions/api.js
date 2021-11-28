@@ -68,7 +68,14 @@ router.get("/text", (req, res) => {
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
 			const is_unknown = is_unknown_file(data);
-			res.send({ url, ...rest, is_unknown });
+			data = data || "";
+			if (is_img_ctype) {
+				res.send(data.toString("base64"));
+			} else if (is_unknown) {
+				res.send(data);
+			} else {
+				res.send(data.toString());
+			}
 			return;
 			// Object.entries(headers).forEach(([key, value]) => {
 			// 	if (key.match(/encoding/gi)) return;
