@@ -26,8 +26,16 @@ router.get("/", (req, res) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
-			const is_img_ctype = isImageContentType(getContentType(headers));
-			res.send(is_img_ctype ? data.toString("base64") : data);
+			const ctype = getContentType(headers);
+			const is_img_ctype = isImageContentType(ctype);
+			const is_html_ctype = isHtmlContentType(ctype);
+			if (is_img_ctype) {
+				res.send(data.toString("base64"));
+			} else if (is_html_ctype) {
+				res.send(data.toString());
+			} else {
+				res.send(data);
+			}
 		});
 		return;
 	}
