@@ -1,6 +1,6 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const { httpRequest } = require("../lib/utils");
+const { httpRequest, getContentType, isImageContentType } = require("../lib/utils");
 
 const app = express();
 const router = express.Router();
@@ -8,7 +8,10 @@ const router = express.Router();
 router.get("/", (req, res) => {
 	const { url, ...rest } = req.query;
 	if (url) {
-		httpRequest(url, rest).then(({ data, req_options, headers }) => {
+		httpRequest(url, {
+			...rest,
+			responseType: "arraybuffer",
+		}).then(({ data, req_options, headers }) => {
 			let cors_headers = {
 				"Access-Control-Allow-Headers":
 					"Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin",
@@ -23,7 +26,8 @@ router.get("/", (req, res) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
-			res.send(data);
+			const is_img_ctype = isImageContentType(getContentType(headers));
+			res.send(is_img_ctype ? data.toString("base64") : data);
 		});
 		return;
 	}
@@ -33,5 +37,11 @@ router.get("/", (req, res) => {
 
 app.use(`/.netlify/functions/api`, router);
 
-module.exports = app;
-module.exports.handler = serverless(app);
+const handler = serverless(app);
+
+module.exports.handler = async (event, context) => {
+	const result = await handler(event, context);
+	const is_img_ctype = isImageContentType(getContentType(result.headers));
+	result.isBase64Encoded = is_img_ctype;
+	return result;
+};
