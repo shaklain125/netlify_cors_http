@@ -13,6 +13,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
 	const { url, ...rest } = req.query;
 	if (url) {
+		res.send({
+			...rest,
+			responseType: "arraybuffer",
+		});
+		return;
 		httpRequest(url, {
 			...rest,
 			responseType: "arraybuffer",
