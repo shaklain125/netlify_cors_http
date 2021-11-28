@@ -37,7 +37,8 @@ router.get("/", (req, res) => {
 			const is_unknown = is_unknown_file(data);
 			data = data || "";
 			if (is_img_ctype) {
-				res.send(data.toString("base64"));
+				res.setHeader("Content-Length", data.length);
+				res.end(data.toString("base64"));
 			} else if (is_unknown) {
 				res.send(data);
 			} else {
