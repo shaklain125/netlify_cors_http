@@ -34,14 +34,13 @@ router.get("/", (req, res) => {
 			const ctype = getContentType(headers);
 			const is_img_ctype = isImageContentType(ctype);
 			const is_html_ctype = isHtmlContentType(ctype);
-			// if (is_img_ctype) {
-			// 	res.send(data.toString("base64"));
-			// } else if (is_html_ctype) {
-			// 	res.send({ url });
-			// } else {
-			// 	res.send(data);
-			// }
-			res.send({ url, data_: data.toString() });
+			if (is_img_ctype) {
+				res.send(data.toString("base64"));
+			} else if (is_html_ctype) {
+				res.send({ url, data_html: data.toString() });
+			} else {
+				res.send(data);
+			}
 		});
 		return;
 	}
