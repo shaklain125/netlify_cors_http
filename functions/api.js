@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 	if (url) {
 		httpRequest(url, {
 			...rest,
-			responseType: "arraybuffer",
+			// responseType: "arraybuffer",
 		}).then(({ data, req_options, headers }) => {
 			let cors_headers = {
 				"Access-Control-Allow-Headers":
