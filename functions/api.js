@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
 			if (is_img_ctype) {
 				res.send(data.toString("base64"));
 			} else if (is_html_ctype) {
-				res.send(data.toString());
+				res.send({ url });
 			} else {
 				res.send(data);
 			}
