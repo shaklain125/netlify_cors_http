@@ -48,7 +48,7 @@ router.get("/", (req, res) => {
 	res.send("");
 });
 
-router.get("text", (req, res) => {
+router.get("/text", (req, res) => {
 	const { url, ...rest } = req.query;
 	res.send({ url, ...rest });
 });
