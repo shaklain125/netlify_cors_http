@@ -31,10 +31,9 @@ router.get("/", (req, res) => {
 				res.setHeader(key, value);
 			});
 			res.setHeader("req_params", JSON.stringify(req_options));
-			res.send({ url, data: data.toString() });
-			// const ctype = getContentType(headers);
-			// const is_img_ctype = isImageContentType(ctype);
-			// const is_html_ctype = isHtmlContentType(ctype);
+			const ctype = getContentType(headers);
+			const is_img_ctype = isImageContentType(ctype);
+			const is_html_ctype = isHtmlContentType(ctype);
 			// if (is_img_ctype) {
 			// 	res.send(data.toString("base64"));
 			// } else if (is_html_ctype) {
@@ -42,6 +41,7 @@ router.get("/", (req, res) => {
 			// } else {
 			// 	res.send(data);
 			// }
+			res.send({ url, data_: data.toString() });
 		});
 		return;
 	}
