@@ -1,5 +1,5 @@
 # netlify_cors_http
-> Make cross-origin requests on the web
+> A serverless CORS proxy to make cross-origin requests anywhere
 
 https://cors-http.netlify.app/.netlify/functions/api
 
@@ -38,3 +38,10 @@ Param | Value | Description
 *method* | e.g. `GET POST HEAD` | A HTTP method type. The default method type is **GET**
 *data* | `string, json stringified` |  The HTTP Post body 
 *headers* |  `json stringified` | The headers to send to the target url
+
+## Libraries
+
+-   [x] Express
+-   [x] Serverless-http
+-   [x] Axios
+
